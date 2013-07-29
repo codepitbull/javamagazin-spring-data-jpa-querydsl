@@ -1,0 +1,5 @@
+rootProject.name = 'spring-data-jpa-querydsl'
+include ':domain', ':service'
+
+project(':domain').projectDir = "$rootDir/domain" as File
+project(':service').projectDir = "$rootDir/service" as File

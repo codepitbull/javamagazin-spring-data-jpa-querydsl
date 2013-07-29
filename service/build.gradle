@@ -1,0 +1,21 @@
+description = 'Business services'
+
+dependencies {
+    compile project(':domain')
+    compile libs.commons_codec
+    compile libs.spring_core
+    compile libs.spring_context
+    compile libs.spring_aspects
+    compile libs.spring_data_jpa
+    compile libs.jpa20
+    compile libs.c3p0
+    compile libs.querydsl
+    compile libs.h2
+    compile libs.hibernate_entitymanager
+    compile libs.joda_time
+    compile libs.slf4j_log4j
+    compile libs.log4j
+    testCompile test_libs.mockito
+    testCompile test_libs.junit
+    testCompile test_libs.spring_test
+}
