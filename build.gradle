@@ -26,15 +26,6 @@ subprojects {
     sourceCompatibility = 1.7
     targetCompatibility = 1.7
 
-    sourceSets {
-        main {
-            java {
-                srcDir 'src/main/java'
-                srcDir 'src/main/generated'
-            }
-        }
-    }
-
     repositories {
         mavenCentral()
         mavenLocal()

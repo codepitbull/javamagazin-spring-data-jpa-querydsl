@@ -1,20 +1,20 @@
 description = 'Data model'
 
-dependencies {
-    compile libs.jpa20
-    compile libs.querydsl_apt
-    compile libs.commons_lang
-}
-
-def generatedDir = "$projectDir/src/main/generated"
-
-sourceSets {
-    generated.java.srcDirs = [generatedDir]
-}
-
 configurations {
     querydslapt
 }
+
+dependencies {
+    querydslapt libs.querydsl_apt
+
+    compile libs.jpa20
+    compile libs.commons_lang
+    compile libs.querydsl
+}
+
+def generatedDir = "$buildDir/querydsl/gen-src"
+
+sourceSets.main.java.srcDir generatedDir
 
 task generateQueryDSL(type: JavaCompile, group: 'build', description: 'Generates the QueryDSL query types') {
     source = sourceSets.main.java
@@ -23,8 +23,8 @@ task generateQueryDSL(type: JavaCompile, group: 'build', description: 'Generates
             "-proc:only",
             "-processor", "com.mysema.query.apt.jpa.JPAAnnotationProcessor"
     ]
-    destinationDir = new File(generatedDir)
-    dependencyCacheDir = new File("$buildDir/dependencyCacheDir")
+    destinationDir = file(generatedDir)
+    dependencyCacheDir = file("$buildDir/dependencyCacheDir")
 }
 
 compileJava.dependsOn generateQueryDSL
